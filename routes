@@ -1,1 +1,3 @@
 /                           HomeR       GET
+/produto/cadastro           ProdutoR    GET POST
+/produto/listar             ListProdR   GET

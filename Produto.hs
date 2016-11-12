@@ -56,6 +56,6 @@ getListProdR = do
                          <td> #{fromSqlKey pid}
                          <td> #{ProdutoNome  Produto}
                          <td> #{ProdutoIdade Produto}
-                         <td> #{ProdutoPassaporte   Produto}
+                         <td> #{ProdutoPreco   Produto}
                          
          |]
