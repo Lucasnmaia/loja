@@ -14,7 +14,7 @@ formCliente = renderDivs $ Cliente
         <$> areq textField "Nome:"     Nothing
         <*> areq textField  "Telefone:"     Nothing
         <*> areq textField  "cpf:"     Nothing
-        <*> areq textField  "email:"     Nothing
+        <*> areq emailField  "email:"     Nothing
         <*> areq textField  "endereco:"     Nothing
         <*> areq textField  "bairro:"     Nothing
 

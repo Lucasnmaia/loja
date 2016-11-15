@@ -3,3 +3,5 @@
 /produto/listar             ListProdR   GET
 /cliente/cadastro           ClienteR    GET POST
 /cliente/listar             ListClieR   GET
+/fornecedor/cadastro        FornecedorR    GET POST
+/fornecedor/listar          ListFornR   GET

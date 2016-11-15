@@ -27,7 +27,7 @@ getHomeR = defaultLayout $ do
     
     toWidget[lucius|
         ul li {
-            display: inline;
+            display: inline block;
         }
     |]
     [whamlet|
@@ -35,6 +35,8 @@ getHomeR = defaultLayout $ do
             <ul>
                 <li> <a href=@{ClienteR}>Cadastro de cliente
                 <li> <a href=@{ProdutoR}>Cadastro de produtos
+                <li> <a href=@{FornecedorR}>Cadastro de fornecedores
                 <li> <a href=@{ListClieR}> Listagem de cliente
                 <li> <a href=@{ListProdR}>Listagem de produtos
+                <li> <a href=@{ListFornR}>Listagem de fornecedores
     |]

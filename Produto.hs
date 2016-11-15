@@ -16,6 +16,7 @@ formProduto = renderDivs $ Produto
         <*> areq doubleField  "Preco:"     Nothing
         
 
+
 getProdutoR:: Handler Html
 getProdutoR = do
     (widget,enctype) <- generateFormPost formProduto
@@ -59,5 +60,6 @@ getListProdR = do
                          <td> #{produtoNome    produto}
                          <td> #{produtoQtde    produto}
                          <td> #{produtoPreco   produto}
+
                          
          |]
