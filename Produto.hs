@@ -10,10 +10,10 @@ import Data.Monoid
 
 
 formProduto :: Form Produto
-formProduto= renderDivs $ Produto
-        <$> areq textField   "Nome:       "     Nothing
-        <*> areq intField    "Quantidade: "     Nothing
-        <*> areq doubleField "Preço:      "     Nothing
+formProduto = renderDivs $ Produto
+        <$> areq textField "Nome:"     Nothing
+        <*> areq intField  "Quantidade:"     Nothing
+        <*> areq doubleField  "Preco:"     Nothing
         
 
 getProdutoR:: Handler Html
@@ -32,12 +32,14 @@ postProdutoR = do
 
         ((result,_),_)<- runFormPost formProduto
         case result of
-            FormSuccess Produto -> do
+            FormSuccess produto -> do
                 pid<-runDB $ insert produto
                 defaultLayout[whamlet|
                     <h1> Produto #{fromSqlKey pid} cadastrado!
                 |]
             _ -> redirect HomeR
+
+
 
 
 getListProdR:: Handler Html
@@ -54,8 +56,8 @@ getListProdR = do
                  $forall Entity pid produto <- prod
                      <tr>
                          <td> #{fromSqlKey pid}
-                         <td> #{ProdutoNome  Produto}
-                         <td> #{ProdutoIdade Produto}
-                         <td> #{ProdutoPreco   Produto}
+                         <td> #{produtoNome    produto}
+                         <td> #{produtoQtde    produto}
+                         <td> #{produtoPreco   produto}
                          
          |]

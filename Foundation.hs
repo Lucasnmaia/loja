@@ -18,7 +18,7 @@ Produto
     nome  Text
     qtde  Int
     preco Double
-    forn  FornecedorId
+--    forn  FornecedorId
     
 Fornecedor
     nome        Text

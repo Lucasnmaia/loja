@@ -33,8 +33,8 @@ getHomeR = defaultLayout $ do
     [whamlet|
         <h1>Vendas de Sapatilhas
             <ul>
-                <li> <a href=@{PassageiroR}>Cadastro de cliente
-                <li> <a href=@{VooR}>Cadastro de produtos
-                <li> <a href=@{ListPassR}> Listagem de cliente
-                <li> <a href=@{ListVooR}>Listagem de produtos
+                <li> <a href=@{ClienteR}>Cadastro de cliente
+                <li> <a href=@{ProdutoR}>Cadastro de produtos
+                <li> <a href=@{ListClieR}> Listagem de cliente
+                <li> <a href=@{ListProdR}>Listagem de produtos
     |]

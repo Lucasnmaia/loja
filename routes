@@ -1,3 +1,5 @@
 /                           HomeR       GET
 /produto/cadastro           ProdutoR    GET POST
 /produto/listar             ListProdR   GET
+/cliente/cadastro           ClienteR    GET POST
+/cliente/listar             ListClieR   GET

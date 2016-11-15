@@ -7,7 +7,7 @@ import Control.Monad.Logger (runStdoutLoggingT)
 import Database.Persist.Postgresql
 
 connStr :: ConnectionString
-connStr = "dbname=dbtfmbj3jr7ibo host=ec2-54-235-95-188.compute-1.amazonaws.com user=ogojtbccneuudz password=iWvPTyCFCuW9MNBgmPQzzs8xnu port=5432"
+connStr = "dbname=dbtfmbj3jr7ibo host=ec2-54-235-95-188.compute-1.amazonaws.com user=tymgxetpbwhzgc password=iWvPTyCFCuW9MNBgmPQzzs8xnu port=5432"
 
 
 
