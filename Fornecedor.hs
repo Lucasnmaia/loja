@@ -14,7 +14,7 @@ formFornecedor = renderDivs $ Fornecedor
         <$> areq textField  "Nome:"     Nothing
         <*> areq textField  "Telefone:"     Nothing
         <*> areq textField  "Cnpj:"     Nothing
-        
+
 
 
 getFornecedorR:: Handler Html
@@ -37,6 +37,8 @@ postFornecedorR = do
                 fid<-runDB $ insert fornecedor
                 defaultLayout[whamlet|
                     <h1> Fornecedor #{fromSqlKey fid} cadastrado!
+                    <form action=@{HomeR} method=get >
+                        <input type="submit" value="Voltar">
                 |]
             _ -> redirect HomeR
 
@@ -60,6 +62,8 @@ getListFornR = do
                          <td> #{fornecedorNome    fornecedor}
                          <td> #{fornecedorTelefone    fornecedor}
                          <td> #{fornecedorCnpj    fornecedor}
+            <form action=@{HomeR} method=get >
+                <input type="submit" value="Voltar">
 
                          
          |]

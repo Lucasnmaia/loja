@@ -9,13 +9,15 @@ import Data.Text
 import Data.Monoid
 
 
+
+
+
 formProduto :: Form Produto
 formProduto = renderDivs $ Produto
-        <$> areq textField "Nome:"     Nothing
-        <*> areq intField  "Quantidade:"     Nothing
-        <*> areq doubleField  "Preco:"     Nothing
-        
-
+        <$> areq textField                    "Nome:"     Nothing
+        <*> areq intField                     "Quantidade:"     Nothing
+        <*> areq doubleField                  "Preco:"     Nothing
+                 
 
 getProdutoR:: Handler Html
 getProdutoR = do
@@ -35,9 +37,12 @@ postProdutoR = do
         case result of
             FormSuccess produto -> do
                 pid<-runDB $ insert produto
-                defaultLayout[whamlet|
-                    <h1> Produto #{fromSqlKey pid} cadastrado!
-                |]
+                defaultLayout $ do
+                    [whamlet|
+                        <h1> Produto #{fromSqlKey pid} cadastrado!
+                        <form action=@{HomeR} method=get >
+                            <input type="submit" value="Voltar">
+                    |]
             _ -> redirect HomeR
 
 
@@ -60,6 +65,8 @@ getListProdR = do
                          <td> #{produtoNome    produto}
                          <td> #{produtoQtde    produto}
                          <td> #{produtoPreco   produto}
+             <form action=@{HomeR} method=get >
+                 <input type="submit" value="Voltar">
 
                          
          |]

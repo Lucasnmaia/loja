@@ -37,6 +37,8 @@ postClienteR = do
                 pid<-runDB $ insert cliente
                 defaultLayout[whamlet|
                     <h1> Cliente #{fromSqlKey pid} cadastrado!
+                    <form action=@{HomeR} method=get >
+                        <input type="submit" value="Voltar">                    
                 |]
             _ -> redirect HomeR
 
@@ -63,5 +65,7 @@ getListClieR = do
                          <td> #{clienteEmail   cliente}
                          <td> #{clienteEndereco   cliente}
                          <td> #{clienteBairro   cliente}
+            <form action=@{HomeR} method=get >
+                <input type="submit" value="Voltar">                         
                          
          |]
