@@ -29,9 +29,10 @@ Cliente
     nome        Text
     telefone    Text
     cpf         Text
-    email       Text
     endereco    Text
     bairro      Text
+    email       Text
+    senha       Text
     
 Pedido
     nomeCli     Text
@@ -52,7 +53,29 @@ PedidoProduto
 
 mkYesodData "App" $(parseRoutesFile "routes")
 
-instance Yesod App
+instance Yesod App where
+    authRoute _ = Just LoginR
+    
+    isAuthorized ClienteR _ = return Authorized
+    isAuthorized ListProdR _ = return Authorized
+    isAuthorized LoginR _ = return Authorized
+    isAuthorized HomeR _ = return Authorized
+    isAuthorized AdminR _ = ehAdmin
+    isAuthorized _ _ = estaAutenticado
+
+ehAdmin :: Handler AuthResult
+ehAdmin = do
+   msu <- lookupSession "_ADMIN@admin"
+   case msu of
+       Just _ -> return Authorized
+       Nothing -> return $ Unauthorized "Nao eh admin"
+
+estaAutenticado :: Handler AuthResult
+estaAutenticado = do
+   msu <- lookupSession "_ID"
+   case msu of
+       Just _ -> return Authorized
+       Nothing -> return AuthenticationRequired
 
 instance YesodPersist App where
    type YesodPersistBackend App = SqlBackend
@@ -64,7 +87,4 @@ instance YesodPersist App where
 type Form a = Html -> MForm Handler (FormResult a, Widget)
 
 instance RenderMessage App FormMessage where
-    renderMessage _ _ = defaultFormMessage{-# LANGUAGE OverloadedStrings, TypeFamilies, QuasiQuotes,
-             TemplateHaskell, GADTs, FlexibleContexts,
-             MultiParamTypeClasses, DeriveDataTypeable, EmptyDataDecls,
-             GeneralizedNewtypeDeriving, ViewPatterns, FlexibleInstances #-}
+    renderMessage _ _ = defaultFormMessage

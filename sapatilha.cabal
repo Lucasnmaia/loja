@@ -8,11 +8,11 @@ executable          sapatilha
   main-is:          Main.hs
   other-modules:    Foundation
                     Application
-                    Cliente
-                    Produto
-                    Fornecedor
-                    Pedido
-                    PedidoProduto
+                    Handler.Cliente
+                    Handler.Produto
+                    Handler.Fornecedor
+                    Handler.Pedido
+                    Handler.PedidoProduto
                     
                     
   ghc-options:      -Wall -fwarn-tabs -O2

@@ -13,18 +13,19 @@ import Yesod
 -- PARA CADA NOVO GRUPO DE HANDLERS, CRIAR UM AQUIVO
 -- DE HANDLER NOVO E IMPORTAR AQUI
 
-import Pedido
-import Produto
-import Cliente
-import Fornecedor
-import PedidoProduto
+import Handler.Pedido
+import Handler.Produto
+import Handler.Cliente
+import Handler.Fornecedor
+import Handler.PedidoProduto
+import Handler.Login
 ------------------
 mkYesodDispatch "App" resourcesApp
 
 
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
-    
+    sessao <- lookupSession "_ID"
     toWidget[lucius|
         ul li {
             display: inline block;
@@ -39,4 +40,8 @@ getHomeR = defaultLayout $ do
                 <li> <a href=@{ListClieR}> Listagem de cliente
                 <li> <a href=@{ListProdR}>Listagem de produtos
                 <li> <a href=@{ListFornR}>Listagem de fornecedores
+                <li> <a href=@{AdminR}>Administrador
+                $maybe sess <- sessao
+                    <form method=post action=@{LogoutR}>
+                        <input type="submit" value="Logout">
     |]
