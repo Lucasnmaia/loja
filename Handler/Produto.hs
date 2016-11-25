@@ -14,10 +14,14 @@ import Data.Monoid
 
 formProduto :: Form Produto
 formProduto = renderDivs $ Produto
-        <$> areq textField                    "Nome:"     Nothing
-        <*> areq intField                     "Quantidade:"     Nothing
-        <*> areq doubleField                  "Preco:"     Nothing
-    
+        <$> areq textField "Nome:"     Nothing
+        <*> areq intField   "Quantidade:"     Nothing
+        <*> areq doubleField  "Preco:"     Nothing
+        <*> areq (selectField dptos) "Fornecedor" Nothing 
+
+dptos = do
+       entidades <- runDB $ selectList [] [Asc FornecedorNome] 
+       optionsPairs $ fmap (\ent -> (fornecedorNome $ entityVal ent, entityKey ent)) entidades    
 
 getProdutoR:: Handler Html
 getProdutoR = do
