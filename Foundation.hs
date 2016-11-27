@@ -3,15 +3,15 @@
              MultiParamTypeClasses, DeriveDataTypeable, EmptyDataDecls,
              GeneralizedNewtypeDeriving, ViewPatterns, FlexibleInstances #-}
 module Foundation where
-
 import Yesod
+import Yesod.Static
 import Data.Text
 import Data.Time.Calendar
 import Database.Persist.Postgresql
     ( ConnectionPool, SqlBackend, runSqlPool)
 
-data App = App {connPool :: ConnectionPool }
-
+--data App = App {connPool :: ConnectionPool }
+data Sitio = Sitio {getStatic :: Static, connPool :: ConnectionPool }
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
 
 Produto
@@ -33,7 +33,15 @@ Cliente
     bairro      Text
     email       Text
     senha       Text
+    UniqueEmail email
     
+    
+--Venda
+--    clienteid ClienteId
+--    produtoid  ProdutoId
+  
+
+
 Pedido
     nomeCli     Text
     cpfCli      Text
@@ -51,9 +59,22 @@ PedidoProduto
 
 |]
 
-mkYesodData "App" $(parseRoutesFile "routes")
+mkYesodData "Sitio" $(parseRoutesFile "routes")
 
-instance Yesod App where
+--mkMessage "Sitio" "messages" "pt-br"
+
+--mkYesodData "App" $(parseRoutesFile "routes")
+
+
+instance YesodPersist Sitio where
+   type YesodPersistBackend Sitio = SqlBackend
+   runDB f = do
+       master <- getYesod
+       let pool = connPool master
+       runSqlPool f pool
+
+
+instance Yesod Sitio where
     authRoute _ = Just LoginR
     
     isAuthorized ClienteR _ = return Authorized
@@ -65,7 +86,7 @@ instance Yesod App where
 
 ehAdmin :: Handler AuthResult
 ehAdmin = do
-   msu <- lookupSession "_ADMIN@admin"
+   msu <- lookupSession "_ADMIN"
    case msu of
        Just _ -> return Authorized
        Nothing -> return $ Unauthorized "Nao eh admin"
@@ -77,14 +98,18 @@ estaAutenticado = do
        Just _ -> return Authorized
        Nothing -> return AuthenticationRequired
 
-instance YesodPersist App where
-   type YesodPersistBackend App = SqlBackend
-   runDB f = do
-       master <- getYesod
-       let pool = connPool master
-       runSqlPool f pool
+
 
 type Form a = Html -> MForm Handler (FormResult a, Widget)
 
-instance RenderMessage App FormMessage where
+instance RenderMessage Sitio FormMessage where
     renderMessage _ _ = defaultFormMessage
+    
+widgetForm :: Route Sitio -> Enctype -> Widget -> Text -> Widget
+widgetForm x enctype widget y =  [whamlet| 
+<h1>
+    #{y}
+    <form method=post action=@{x} enctype=#{enctype}>
+        ^{widget}
+        <input type="submit" value="Cadastrar">
+        |]

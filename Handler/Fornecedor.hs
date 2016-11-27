@@ -20,12 +20,8 @@ formFornecedor = renderDivs $ Fornecedor
 getFornecedorR:: Handler Html
 getFornecedorR = do
     (widget,enctype) <- generateFormPost formFornecedor
-    defaultLayout $ do
-        [whamlet|
-            <form action=@{FornecedorR} method=post enctype=#{enctype}>
-                ^{widget}
-                <input type="submit" value="Cadastrar">
-        |]
+    defaultLayout $ widgetForm FornecedorR enctype widget "Cadastro de Fornecedores"
+
 
 
 postFornecedorR:: Handler Html

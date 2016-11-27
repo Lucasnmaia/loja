@@ -26,12 +26,8 @@ dptos = do
 getProdutoR:: Handler Html
 getProdutoR = do
     (widget,enctype) <- generateFormPost formProduto
-    defaultLayout $ do
-        [whamlet|
-            <form action=@{ProdutoR} method=post enctype=#{enctype}>
-                ^{widget}
-                <input type="submit" value="Cadastrar">
-        |]
+    defaultLayout $ widgetForm ProdutoR enctype widget "Cadastro de Produtos"
+
 
 
 postProdutoR:: Handler Html

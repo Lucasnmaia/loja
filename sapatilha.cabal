@@ -13,6 +13,7 @@ executable          sapatilha
                     Handler.Fornecedor
                     Handler.Pedido
                     Handler.PedidoProduto
+                    Handler.Login
                     
                     
   ghc-options:      -Wall -fwarn-tabs -O2
@@ -26,5 +27,6 @@ executable          sapatilha
                 , aeson
                 , monad-logger
                 , time
+                , yesod-static
 
   ghc-options:    -threaded -O2 -rtsopts -with-rtsopts=-N

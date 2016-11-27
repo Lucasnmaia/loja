@@ -22,12 +22,8 @@ formCliente = renderDivs $ Cliente
 getClienteR:: Handler Html
 getClienteR = do
     (widget,enctype) <- generateFormPost formCliente
-    defaultLayout $ do
-        [whamlet|
-            <form action=@{ClienteR} method=post enctype=#{enctype}>
-                ^{widget}
-                <input type="submit" value="Cadastrar">
-        |]
+    defaultLayout $ widgetForm ClienteR enctype widget "Cadastro de Clientes"
+
 
 postClienteR:: Handler Html
 postClienteR = do
@@ -35,12 +31,17 @@ postClienteR = do
         ((result,_),_)<- runFormPost formCliente
         case result of
             FormSuccess cliente -> do
-                pid<-runDB $ insert cliente
-                defaultLayout[whamlet|
-                    <h1> Cliente #{fromSqlKey pid} cadastrado!
-                    <form action=@{HomeR} method=get >
-                        <input type="submit" value="Voltar">                    
-                |]
+                unicoEmail <- runDB $ getBy $ UniqueEmail (clienteEmail cliente)
+                case unicoEmail of
+                    Just _ -> redirect ClienteR
+                    Nothing -> do
+                    
+                        pid<-runDB $ insert cliente
+                        defaultLayout[whamlet|
+                            <h1> Cliente #{fromSqlKey pid} cadastrado!
+                            <form action=@{HomeR} method=get >
+                                <input type="submit" value="Voltar">                    
+                        |]
             _ -> redirect HomeR
 
 getListClieR:: Handler Html

@@ -7,12 +7,6 @@ module Application where
 
 import Foundation
 import Yesod
-
--- AQUI MORAM OS HANDLERS
--- import Add
--- PARA CADA NOVO GRUPO DE HANDLERS, CRIAR UM AQUIVO
--- DE HANDLER NOVO E IMPORTAR AQUI
-
 import Handler.Pedido
 import Handler.Produto
 import Handler.Cliente
@@ -20,7 +14,7 @@ import Handler.Fornecedor
 import Handler.PedidoProduto
 import Handler.Login
 ------------------
-mkYesodDispatch "App" resourcesApp
+mkYesodDispatch "Sitio" resourcesSitio
 
 
 getHomeR :: Handler Html
