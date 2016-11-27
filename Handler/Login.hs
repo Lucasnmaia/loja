@@ -32,9 +32,11 @@ postLoginR :: Handler Html
 postLoginR = do
         ((result,_),_)<- runFormPost formLogin
         case result of
-            FormSuccess ("admin","admin") -> do
+            FormSuccess ("admin@admin.com","admin") -> do
                 setSession "_ADMIN" "admin"
-                redirect AdminR
+                setSession "_NAME" "chefe"
+                setSession "_ID" "eu"
+                redirect HomeR
             FormSuccess (login,senha) -> do
                 usuario <- runDB $ selectFirst [ClienteEmail ==. login, 
                                                 ClienteSenha ==. senha] []
@@ -47,11 +49,23 @@ postLoginR = do
             _ -> redirect HomeR
 
 
+
 getAdminR :: Handler Html
-getAdminR = defaultLayout [whamlet| <h1> Bem-vindo ADMIN! |]
+getAdminR = do
+    valor <- lookupSession "_NAME"
+    nome <- lookupSession "_ADMIN"
+    defaultLayout
+        [whamlet|
+            <h1> Bem-vindo ADMIN!
+            #{show $ nome} 
+            #{show $ valor}
+        |]
+
 
 
 postLogoutR :: Handler ()
 postLogoutR = do
     deleteSession "_ID"
+    deleteSession "_ADMIN"
+    deleteSession "_NAME"
     redirect HomeR
