@@ -20,12 +20,13 @@ formLogin = renderDivs $ (,)
 getLoginR :: Handler Html
 getLoginR = do
     (widget,enctype) <- generateFormPost formLogin
-    defaultLayout $ do
+    defaultLayout $ do 
+        $(whamletFile "Templates/login.hamlet")
         [whamlet|
-            <form action=@{LoginR} method=post enctype=#{enctype}>
-                ^{widget}
-                <input type="submit" value="Logar">
+         <meta charset="UTF-8">  
+            
         |]
+
 
 
 postLoginR :: Handler Html

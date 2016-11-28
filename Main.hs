@@ -1,7 +1,5 @@
 {-# LANGUAGE OverloadedStrings, QuasiQuotes,
              TemplateHaskell #-}
-             
-            
 module Main where
 import Foundation
 import Application () -- for YesodDispatch instance

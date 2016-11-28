@@ -23,6 +23,7 @@ getClienteR:: Handler Html
 getClienteR = do
     (widget,enctype) <- generateFormPost formCliente
     defaultLayout $ widgetForm ClienteR enctype widget "Cadastro de Clientes"
+    
 
 
 postClienteR:: Handler Html

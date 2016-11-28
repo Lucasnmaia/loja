@@ -106,10 +106,4 @@ instance RenderMessage Sitio FormMessage where
     renderMessage _ _ = defaultFormMessage
     
 widgetForm :: Route Sitio -> Enctype -> Widget -> Text -> Widget
-widgetForm x enctype widget y =  [whamlet| 
-<h1>
-    #{y}
-    <form method=post action=@{x} enctype=#{enctype}>
-        ^{widget}
-        <input type="submit" value="Cadastrar">
-        |]
+widgetForm x enctype widget y = $(whamletFile "Templates/form.hamlet")
