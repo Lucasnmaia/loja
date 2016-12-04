@@ -11,8 +11,7 @@ executable          sapatilha
                     Handler.Cliente
                     Handler.Produto
                     Handler.Fornecedor
-                    Handler.Pedido
-                    Handler.PedidoProduto
+                    Handler.Venda
                     Handler.Login
                     
                     

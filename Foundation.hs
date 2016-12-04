@@ -36,24 +36,27 @@ Cliente
     UniqueEmail email
     
     
---Venda
---    clienteid ClienteId
---    produtoid  ProdutoId
+Venda
+    clienteid ClienteId
+    produtoid  ProdutoId
+--    datacompra Day
+-- totalcompra Double
+    
   
 
 
-Pedido
-    nomeCli     Text
-    cpfCli      Text
-    nomePro     Text
-    qtdePro     Int
+-- Pedido
+--    nomeCli     Text
+--    cpfCli      Text
+--  nomePro     Text
+--    qtdePro     Int
     
-PedidoProduto
-    pedidoid    PedidoId
-    prodid      ProdutoId
-    dataCompra  Day
-    dataEnt     Day
-    total       Double
+--PedidoProduto
+--    pedidoid    PedidoId
+--    prodid      ProdutoId
+--    datacompra  Day
+--    dataEnt     Day
+--    total       Double
     
     
 

@@ -7,11 +7,10 @@ module Application where
 
 import Foundation
 import Yesod
-import Handler.Pedido
 import Handler.Produto
 import Handler.Cliente
 import Handler.Fornecedor
-import Handler.PedidoProduto
+import Handler.Venda
 import Handler.Login
 ------------------
 mkYesodDispatch "Sitio" resourcesSitio
