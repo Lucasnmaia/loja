@@ -71,26 +71,13 @@ getListClieR:: Handler Html
 getListClieR = do
      prod <- runDB $ selectList [] [Asc ClienteNome]
      defaultLayout $ do
-         [whamlet|
-             <table>
-                 <tr>
-                     <td> id
-                     <td> nome
-                     <td> telefone
-                     <td> cpf
-                     <td> email
-                     <td> endereco
-                     <td> bairro
-                 $forall Entity pid cliente <- prod
-                     <tr>
-                         <td> #{fromSqlKey pid}
-                         <td> #{clienteNome    cliente}
-                         <td> #{clienteTelefone    cliente}
-                         <td> #{clienteCpf   cliente}
-                         <td> #{clienteEmail   cliente}
-                         <td> #{clienteEndereco   cliente}
-                         <td> #{clienteBairro   cliente}
-            <form action=@{HomeR} method=get >
-                <input type="submit" value="Voltar">                         
-                         
-         |]
+        $(whamletFile "Templates/listaClientes.hamlet")
+        addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+        addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+        addScriptRemote "https://maxcsdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        addStylesheetRemote "https://fonts.googleapis.com/css?family=Bree+Serif"
+        toWidgetHead
+            [hamlet|
+                <meta charset="UTF-8">  
+            |]

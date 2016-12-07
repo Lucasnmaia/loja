@@ -1,0 +1,19 @@
+<h1>Lista de Clientes
+             <table>
+                 <tr>
+                     
+                     <td> nome
+                     <td> telefone
+                     <td> cpf
+                     <td> email
+                     <td> endereco
+                     <td> bairro
+                 $forall Entity pid cliente <- prod
+                     <tr>
+                         
+                         <td> #{clienteNome    cliente}
+                         <td> #{clienteTelefone    cliente}
+                         <td> #{clienteCpf   cliente}
+                         <td> #{clienteEmail   cliente}
+                         <td> #{clienteEndereco   cliente}
+                         <td> #{clienteBairro   cliente}

@@ -87,12 +87,16 @@ instance Yesod Sitio where
     isAuthorized AdminR _ = ehAdmin
     isAuthorized _ _ = estaAutenticado
 
+
+
+
+
 ehAdmin :: Handler AuthResult
 ehAdmin = do
    msu <- lookupSession "_ADMIN"
    case msu of
        Just _ -> return Authorized
-       Nothing -> return $ Unauthorized "Nao eh admin"
+       Nothing -> return $ Unauthorized "Você não possui autorização para acessar essa página!"
 
 estaAutenticado :: Handler AuthResult
 estaAutenticado = do
