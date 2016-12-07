@@ -1,4 +1,6 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings    #-}
+{-# LANGUAGE TemplateHaskell      #-}
+{-# LANGUAGE ViewPatterns         #-}
 {-# LANGUAGE QuasiQuotes       #-}
 module Handler.Fornecedor where
 
@@ -19,8 +21,18 @@ formFornecedor = renderDivs $ Fornecedor
 
 getFornecedorR:: Handler Html
 getFornecedorR = do
-    (widget,enctype) <- generateFormPost formFornecedor
-    defaultLayout $ widgetForm FornecedorR enctype widget "Cadastro de Fornecedores"
+            (widget,enctype) <- generateFormPost formFornecedor
+            defaultLayout $ do
+                $(whamletFile "Templates/addFornecedores.hamlet")
+                addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+                addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+                addScriptRemote "https://maxcsdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                addStylesheetRemote "https://fonts.googleapis.com/css?family=Bree+Serif"
+                toWidgetHead
+                    [hamlet|
+                        <meta charset="UTF-8">  
+                    |]    
 
 
 

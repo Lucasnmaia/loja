@@ -19,22 +19,15 @@ mkYesodDispatch "Sitio" resourcesSitio
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
     sessao <- lookupSession "_ID"
-    toWidget[lucius|
-        ul li {
-            display: inline block;
-        }
-    |]
+    $(whamletFile "Templates/index.hamlet")
+    addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+    addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"
+    addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.1/metisMenu.min.css"
+    addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+    addScriptRemote "https://maxcsdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.0/metisMenu.min.js"
+    addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/js/sb-admin-2.min.js"
     [whamlet|
-        <h1>Vendas de Sapatilhas
-            <ul>
-                <li> <a href=@{ClienteR}>Cadastro de cliente
-                <li> <a href=@{ProdutoR}>Cadastro de produtos
-                <li> <a href=@{FornecedorR}>Cadastro de fornecedores
-                <li> <a href=@{ListClieR}> Listagem de cliente
-                <li> <a href=@{ListProdR}>Listagem de produtos
-                <li> <a href=@{ListFornR}>Listagem de fornecedores
-                <li> <a href=@{AdminR}>Administrador
-                $maybe sess <- sessao
-                    <form method=post action=@{LogoutR}>
-                        <input type="submit" value="Logout">
+         <meta charset="UTF-8">  
     |]

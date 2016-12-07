@@ -1,0 +1,5 @@
+        <h1>Adicionar novos fornecedores:
+        <p>Insira dos dados do seu fornecedor:
+        <form method=post enctype=#{enctype} action="@{FornecedorR}">
+            ^{widget}
+            <input type="submit" value="Enviar">  

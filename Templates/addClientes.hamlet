@@ -1,0 +1,5 @@
+        <h1>Adicionar novos clientes:
+        <p>Insira dos dados do seu novo cliente:
+        <form method=post enctype=#{enctype} action="@{ClienteR}">
+            ^{widget}
+            <input type="submit" value="Enviar">  

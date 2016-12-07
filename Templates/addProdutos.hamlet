@@ -1,0 +1,5 @@
+        <h1>Adicionar novos produtos:
+        <p>Insira dos dados do seu produto:
+        <form method=post enctype=#{enctype} action="@{ProdutoR}">
+            ^{widget}
+            <input type="submit" value="Enviar">  

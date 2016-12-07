@@ -8,6 +8,14 @@ import Foundation
 import Yesod
 import Database.Persist.Postgresql
 import Data.Text
+import Data.Monoid
+import Control.Monad.Logger (runStdoutLoggingT)
+import Control.Applicative
+import Data.Time
+import Text.Lucius
+import Text.Julius
+import Text.Blaze.Html.Renderer.String (renderHtml)
+import Yesod.Form.Bootstrap3
 
 
 
@@ -19,15 +27,21 @@ formLogin = renderDivs $ (,)
 
 getLoginR :: Handler Html
 getLoginR = do
-    (widget,enctype) <- generateFormPost formLogin
-    defaultLayout $ do 
-        $(whamletFile "Templates/login.hamlet")
-        [whamlet|
-         <meta charset="UTF-8">  
-            
-        |]
-
-
+            (widget,enctype) <- generateFormPost formLogin
+            defaultLayout $ do
+                $(whamletFile "Templates/login.hamlet")
+                addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+                addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+                addScriptRemote "https://maxcsdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                addStylesheetRemote "https://fonts.googleapis.com/css?family=Bree+Serif"
+                toWidgetHead
+                    [hamlet|
+                        <meta charset="UTF-8">  
+                    |]     
+                    
+                
+                
 
 postLoginR :: Handler Html
 postLoginR = do
