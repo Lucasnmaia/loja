@@ -1,6 +1,22 @@
-<h1>
-    Faça o login:
-<form action=@{LoginR} method=post enctype=#{enctype}>
-    ^{widget}
-        <input type="submit" value="Logar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Por favor, faça seu login!
+                    
+                    <div class="panel-body">
+                        <form action=@{LoginR} role="form" method=post enctype=#{enctype}>
+                            <fieldset>
+                                ^{widget}
+                                <br>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Logar">
+                          
+                            
+
+
+
+   
+        
         

@@ -1,5 +1,50 @@
-        <h1>Adicionar novos clientes:
-        <p>Insira dos dados do seu novo cliente:
-        <form method=post enctype=#{enctype} action="@{ClienteR}">
-            ^{widget}
-            <input type="submit" value="Enviar">  
+<div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                  <i class="navbar-brand" href="index.html">
+                  
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">    
+                            <li>
+                                <a href="index.html">
+                                    <i class="fa fa-dashboard fa-fw"> Administrador
+                        
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-bar-chart-o fa-fw"> Cliente<span class="fa arrow">
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href=@{ClienteR}>Cadastro
+                                    <li>
+                                        <a href=@{ListClieR}>Listagem
+                                        
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-bar-chart-o fa-fw"> Fornecedor<span class="fa arrow">
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href=@{FornecedorR}>Cadastro
+                                    <li>
+                                        <a href=@{ListFornR}>Listagem
+                
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-bar-chart-o fa-fw"> Produtos <span class="fa arrow">
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href=@{ProdutoR}>Cadastro
+                                    <li>
+                                        <a href=@{ListProdR}>Listagem
+        
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Adicionar novos clientes:
+                    <p>Insira dos dados do seu novo cliente:
+                    <form method=post enctype=#{enctype} action="@{ClienteR}">
+                        ^{widget}
+                        <input type="submit" value="Enviar">  
+       
+       
+        

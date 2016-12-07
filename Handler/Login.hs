@@ -20,7 +20,7 @@ import Yesod.Form.Bootstrap3
 
 
 formLogin :: Form (Text, Text)
-formLogin = renderDivs $ (,)
+formLogin = renderBootstrap2 $ (,)
         <$> areq emailField  "email "     Nothing
         <*> areq passwordField "password" Nothing 
 
@@ -31,10 +31,13 @@ getLoginR = do
             defaultLayout $ do
                 $(whamletFile "Templates/login.hamlet")
                 addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+                addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"
                 addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.1/metisMenu.min.css"
                 addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
                 addScriptRemote "https://maxcsdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-                addStylesheetRemote "https://fonts.googleapis.com/css?family=Bree+Serif"
+                addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.0/metisMenu.min.js"
+                addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/js/sb-admin-2.min.js"
                 toWidgetHead
                     [hamlet|
                         <meta charset="UTF-8">  
