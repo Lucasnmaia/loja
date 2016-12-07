@@ -1,0 +1,8 @@
+     <h2>Cliente - #{clienteNome cliente}
+            <p> Telefone:    #{clienteTelefone cliente}
+            <p> CPF:         #{clienteCpf cliente}
+            <p> Endereço:    #{clienteEndereco cliente}
+            <p> Bairro:      #{clienteBairro cliente}
+            <p> Email:       #{clienteEmail cliente}
+            
+            

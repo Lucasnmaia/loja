@@ -1,19 +1,5 @@
 <h1>Lista de Clientes
-             <table>
-                 <tr>
-                     
-                     <td> nome
-                     <td> telefone
-                     <td> cpf
-                     <td> email
-                     <td> endereco
-                     <td> bairro
-                 $forall Entity pid cliente <- prod
-                     <tr>
-                         
-                         <td> #{clienteNome    cliente}
-                         <td> #{clienteTelefone    cliente}
-                         <td> #{clienteCpf   cliente}
-                         <td> #{clienteEmail   cliente}
-                         <td> #{clienteEndereco   cliente}
-                         <td> #{clienteBairro   cliente}
+    $forall Entity cid cliente <- prod
+        <a href=@{ListCliR cid}> #{clienteNome cliente} 
+            <form method=post action=@{ListCliR cid}> 
+                <input type="submit" value="Deletar"><br>
