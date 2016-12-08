@@ -31,6 +31,7 @@ getFornecedorR:: Handler Html
 getFornecedorR = do
             (widget,enctype) <- generateFormPost formFornecedor
             defaultLayout $ do
+                sessao <- lookupSession "_ID"
                 $(whamletFile "Templates/addFornecedores.hamlet")
                 addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
                 addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"
@@ -68,6 +69,7 @@ getListFornR:: Handler Html
 getListFornR = do
      forn <- runDB $ selectList [] [Asc FornecedorNome]
      defaultLayout $ do
+            sessao <- lookupSession "_ID"
             $(whamletFile "Templates/listaFornecedores.hamlet")
             addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.1/metisMenu.min.css"

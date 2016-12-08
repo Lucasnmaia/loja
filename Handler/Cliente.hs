@@ -65,6 +65,7 @@ postClienteR = do
                     
                         pid<-runDB $ insert cliente
                         defaultLayout $ do
+                            sessao <- lookupSession "_ID"
                             $(whamletFile "Templates/sucessoCliente.hamlet")
                             addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
                             addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"
@@ -83,6 +84,7 @@ postClienteR = do
 getListClieR:: Handler Html
 getListClieR = do
         prod <- runDB $ selectList [] [Asc ClienteNome]
+        sessao <- lookupSession "_ID"
         defaultLayout $ do
             $(whamletFile "Templates/listaClientes.hamlet")
             addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"

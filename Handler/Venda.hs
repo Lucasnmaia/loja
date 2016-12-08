@@ -28,14 +28,12 @@ formVenda = renderBootstrap2 $ areq (multiSelectField produtosLista) "Produtos d
                                 
 
                                 
-                                
-                                
-
         
 getVendaR:: Handler Html
 getVendaR = do
             (widget,enctype) <- generateFormPost formVenda
             defaultLayout $ do
+                sessao <- lookupSession "_ID"
                 $(whamletFile "Templates/addVendas.hamlet")
                 addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
                 addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"

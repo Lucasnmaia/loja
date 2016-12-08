@@ -35,6 +35,7 @@ getProdutoR:: Handler Html
 getProdutoR = do
             (widget,enctype) <- generateFormPost formProduto
             defaultLayout $ do
+                sessao <- lookupSession "_ID"
                 $(whamletFile "Templates/addProdutos.hamlet")
                 addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
                 addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"
@@ -72,6 +73,7 @@ getListProdR:: Handler Html
 getListProdR = do
      prod <- runDB $ selectList [] [Asc ProdutoNome]
      defaultLayout $ do
+            sessao <- lookupSession "_ID"
             $(whamletFile "Templates/listaProdutos.hamlet")
             addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.1/metisMenu.min.css"

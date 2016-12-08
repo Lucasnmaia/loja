@@ -45,6 +45,11 @@
                                     <li>
                                         <a href=@{VendaR}>Consultar Venda
                                         
+                                $maybe sess <- sessao
+                                    <li>
+                                        <form method=post action=@{LogoutR}>
+                                            <input class="btn btn-danger" type="submit" value="Logout">
+                                        
                                
                                                                           
         

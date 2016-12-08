@@ -46,12 +46,10 @@
                                     <li>
                                         <a href=@{VendaR}>Consultar Venda         
                                         
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-bar-chart-o fa-fw"> Logout <span class="fa arrow">
-                                <ul class="nav nav-second-level">
+                             $maybe sess <- sessao
                                     <li>
-                                        <a href=@{LogoutR}>Sair                                        
+                                        <form method=post action=@{LogoutR}>
+                                            <input class="btn btn-danger" type="submit" value="Logout">                                       
         
         <div id="page-wrapper">
             <div class="row">

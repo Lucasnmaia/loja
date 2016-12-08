@@ -49,7 +49,7 @@
                                 $maybe sess <- sessao
                                     <li>
                                         <form method=post action=@{LogoutR}>
-                                            <input type="submit" value="Logout">                                      
+                                            <input class="btn btn-danger" type="submit" value="Logout">                                      
         
         <div id="page-wrapper">
             <div class="row">
