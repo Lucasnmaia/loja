@@ -43,6 +43,9 @@ getLoginR = do
                         <meta charset="UTF-8">  
                     |]     
                     
+                    
+                    
+                    
                 
                 
 
@@ -86,4 +89,4 @@ postLogoutR = do
     deleteSession "_ID"
     deleteSession "_ADMIN"
     deleteSession "_NAME"
-    redirect HomeR
+    redirect (HomeR)

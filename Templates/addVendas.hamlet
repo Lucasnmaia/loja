@@ -1,3 +1,4 @@
+
 <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -44,21 +45,19 @@
                                     <li>
                                         <a href=@{VendaR}>Efetuar Venda
                                     <li>
-                                        <a href=@{VendaR}>Consultar Venda
+                                        <a href=@{VendaR}>Consultar Venda    
                                         
-                                $maybe sess <- sessao
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-bar-chart-o fa-fw"> Logout <span class="fa arrow">
+                                <ul class="nav nav-second-level">
                                     <li>
-                                        <form method=post action=@{LogoutR}>
-                                            <input type="submit" value="Logout">                                      
+                                        <a href=@{LogoutR}>Sair                                        
         
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Adicionar novos clientes:
-                    <p>Insira dos dados do seu novo cliente:
-                    <form method=post enctype=#{enctype} action="@{ClienteR}">
+                    <h1>Efetuar venda:
+                    <form method=post enctype=#{enctype} action="@{VendaR}">
                         ^{widget}
-                        <input type="submit" value="Enviar">  
-       
-       
-        
+                        <input type="submit" value="Enviar">              

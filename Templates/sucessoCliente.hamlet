@@ -36,7 +36,6 @@
                                         <a href=@{ProdutoR}>Cadastro
                                     <li>
                                         <a href=@{ListProdR}>Listagem
-                                        
                             <li>
                                 <a href="#">
                                     <i class="fa fa-bar-chart-o fa-fw"> Vendas <span class="fa arrow">
@@ -46,19 +45,14 @@
                                     <li>
                                         <a href=@{VendaR}>Consultar Venda
                                         
-                                $maybe sess <- sessao
-                                    <li>
-                                        <form method=post action=@{LogoutR}>
-                                            <input type="submit" value="Logout">                                      
+                               
+                                                                          
         
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Adicionar novos clientes:
-                    <p>Insira dos dados do seu novo cliente:
-                    <form method=post enctype=#{enctype} action="@{ClienteR}">
-                        ^{widget}
-                        <input type="submit" value="Enviar">  
-       
-       
-        
+                    <h1 class="page-header">
+                        <h1> Cliente #{clienteNome cliente} cadastrado!
+                            <form action=@{HomeR} method=get >
+                                <input type="submit" value="Voltar">                    
+                            

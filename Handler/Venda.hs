@@ -9,11 +9,18 @@ import Yesod
 import Database.Persist.Postgresql
 import Data.Text
 import Data.Monoid
-import Data.Time.Calendar
+import Control.Monad.Logger (runStdoutLoggingT)
+import Control.Applicative
+import Data.Time
+import Text.Lucius
+import Text.Julius
+import Text.Blaze.Html.Renderer.String (renderHtml)
+import Yesod.Form.Bootstrap3
+
 
 
 formVenda :: Form [ProdutoId]
-formVenda = renderDivs $ areq (multiSelectField produtosLista) "Produtos disponiveis: " Nothing
+formVenda = renderBootstrap2 $ areq (multiSelectField produtosLista) "Produtos disponiveis: " Nothing
             where
                 produtosLista = do
                 prod <- runDB $ selectList [] [Asc ProdutoQtde]
@@ -27,9 +34,21 @@ formVenda = renderDivs $ areq (multiSelectField produtosLista) "Produtos disponi
         
 getVendaR:: Handler Html
 getVendaR = do
-    (widget,enctype) <- generateFormPost formVenda
-    defaultLayout $ widgetForm VendaR enctype widget "Venda de Produtos"     
-    
+            (widget,enctype) <- generateFormPost formVenda
+            defaultLayout $ do
+                $(whamletFile "Templates/addVendas.hamlet")
+                addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+                addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"
+                addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.1/metisMenu.min.css"
+                addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+                addScriptRemote "https://maxcsdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.0/metisMenu.min.js"
+                addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/js/sb-admin-2.min.js"
+                toWidgetHead
+                    [hamlet|
+                        <meta charset="UTF-8">  
+                    |]   
     
 postVendaR :: Handler Html
 postVendaR = do

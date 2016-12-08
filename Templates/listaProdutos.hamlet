@@ -36,7 +36,7 @@
                                         <a href=@{ProdutoR}>Cadastro
                                     <li>
                                         <a href=@{ListProdR}>Listagem
-                                        
+
                             <li>
                                 <a href="#">
                                     <i class="fa fa-bar-chart-o fa-fw"> Vendas <span class="fa arrow">
@@ -46,19 +46,44 @@
                                     <li>
                                         <a href=@{VendaR}>Consultar Venda
                                         
-                                $maybe sess <- sessao
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-bar-chart-o fa-fw"> Logout <span class="fa arrow">
+                                <ul class="nav nav-second-level">
                                     <li>
-                                        <form method=post action=@{LogoutR}>
-                                            <input type="submit" value="Logout">                                      
+                                        <a href=@{LogoutR}>Sair                                        
         
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Adicionar novos clientes:
-                    <p>Insira dos dados do seu novo cliente:
-                    <form method=post enctype=#{enctype} action="@{ClienteR}">
-                        ^{widget}
-                        <input type="submit" value="Enviar">  
-       
-       
-        
+                    <h1>Lista de Produtos
+                    
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+            <div class="panel-heading">
+                
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID
+                                <th>Nome
+                                <th>Quantidade
+                                <th>Preço
+                                
+                                
+                        <tbody>
+                        $forall Entity pid produto <- prod
+                            <tr>
+                                <td>#{fromSqlKey pid}
+                                <td>
+                                    <a href=@{ListProdR}>  #{produtoNome    produto}
+                                <td> #{produtoQtde    produto}
+                                <td> #{produtoPreco   produto}
+                                <td>
+                                    <form action=@{HomeR} method=get >
+                                        <input type="submit" value="Voltar"> 
+                                        
+                                        
