@@ -57,7 +57,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        <h1> Cliente #{clienteNome cliente} cadastrado!
+                     <div class="alert alert-success">
+                         Cliente #{clienteNome cliente} cadastrado!
+                         <br>
                             <form action=@{HomeR} method=get >
-                                <input type="submit" value="Voltar">                    
+                                <input class="btn btn-primary" type="submit" value="Voltar">                    
                             
