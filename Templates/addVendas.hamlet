@@ -8,8 +8,8 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">    
                             <li>
-                                <a href=@{AdminR}">
-                                    <i class="fa fa-dashboard fa-fw"> Administrador
+                                <a href=@{HomeR}">
+                                    <i class="fa fa-dashboard fa-fw"> Home
                         
                             <li>
                                 <a href="#">

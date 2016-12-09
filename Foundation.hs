@@ -84,10 +84,8 @@ instance Yesod Sitio where
     isAuthorized ListProdR _ = return Authorized
     isAuthorized LoginR _ = return Authorized
     isAuthorized HomeR _ = return Authorized
+    isAuthorized VendaR _ = return Authorized
     isAuthorized AdminR _ = ehAdmin
-    isAuthorized FornecedorR _ = ehAdmin
-    isAuthorized ProdutoR _ = ehAdmin
-    isAuthorized ListFornR _ = ehAdmin
     isAuthorized _ _ = estaAutenticado
 
 

@@ -83,7 +83,7 @@ postClienteR = do
 
 getListClieR:: Handler Html
 getListClieR = do
-        prod <- runDB $ selectList [] [Asc ClienteNome]
+        prod <- runDB $ selectList [] [Asc ClienteId]
         sessao <- lookupSession "_ID"
         defaultLayout $ do
             $(whamletFile "Templates/listaClientes.hamlet")
@@ -106,13 +106,19 @@ getListClieR = do
 getListCliR :: ClienteId -> Handler Html
 getListCliR cid = do
         cliente <- runDB $ get404 cid 
+        sessao <- lookupSession "_ID"
         defaultLayout $ do
             $(whamletFile "Templates/perfilClientes.hamlet")
-            addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
             addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.1/metisMenu.min.css"
+            addStylesheetRemote "https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.css"
+            addStylesheetRemote "https://cdn.datatables.net/responsive/1.0.1/css/dataTables.responsive.css"
+            addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"
+            addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
             addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
-            addScriptRemote "https://maxcsdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            addStylesheetRemote "https://fonts.googleapis.com/css?family=Bree+Serif"
+            addScriptRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.0/metisMenu.min.js"
+            addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/js/sb-admin-2.min.js"
             toWidgetHead
                 [hamlet|
                     <meta charset="UTF-8">  
