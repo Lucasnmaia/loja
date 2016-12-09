@@ -49,30 +49,15 @@
                                     <li>
                                         <form method=post action=@{LogoutR}>
                                             <input class="btn btn-danger" type="submit" value="Logout">
+                                        
+                               
                                                                           
         
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="alert alert-success">
-                        Cliente - #{clienteNome cliente}
+                    <h1 class="page-header">
+                        <h1> Fornecedor #{fornecedorNome fornecedor} cadastrado!
+                            <form action=@{HomeR} method=get >
+                                <input type="submit" value="Voltar">                    
                             
-                    <div class="alert alert-success">
-                        Telefone:#{clienteTelefone cliente}
-                            
-                    <div class="alert alert-success">
-                        CPF:#{clienteCpf cliente}
-                            
-                    <div class="alert alert-success">
-                            Endereço:#{clienteEndereco cliente}
-                            
-                    <div class="alert alert-success">
-                            Bairro:#{clienteBairro cliente}
-                            
-                    <div class="alert alert-success">
-                            Email:#{clienteEmail cliente}
-
-   
-            
-            
-            

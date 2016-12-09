@@ -64,6 +64,7 @@ postVendaR = do
 
             _ -> redirect HomeR    
 
-
+getListVendR :: Handler Html
+getListVendR = undefined 
 
             

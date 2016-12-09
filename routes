@@ -7,8 +7,9 @@
 /fornecedor/cadastro        FornecedorR    GET POST
 /fornecedor/listar          ListFornR   GET
 /login                      LoginR      GET POST
-/venda                      VendaR      GET POST
 
+/venda                      VendaR      GET POST
+/venda/listar               ListVendR   GET
 
 
 

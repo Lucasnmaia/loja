@@ -43,7 +43,7 @@
                                     <li>
                                         <a href=@{VendaR}>Efetuar Venda
                                     <li>
-                                        <a href=@{VendaR}>Consultar Venda
+                                        <a href=@{ListVendR}>Consultar Venda
                                         
                                 $maybe sess <- sessao
                                     <li>

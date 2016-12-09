@@ -55,15 +55,24 @@ postFornecedorR = do
         case result of
             FormSuccess fornecedor -> do
                 fid<-runDB $ insert fornecedor
-                defaultLayout[whamlet|
-                    <h1> Fornecedor #{fromSqlKey fid} cadastrado!
-                    <form action=@{HomeR} method=get >
-                        <input type="submit" value="Voltar">
-                |]
+                defaultLayout $ do
+                    sessao <- lookupSession "_ID"
+                    $(whamletFile "Templates/sucessoFornecedor.hamlet")
+                    addStylesheetRemote "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+                    addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"
+                    addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                    addStylesheetRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.1/metisMenu.min.css"
+                    addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+                    addScriptRemote "https://maxcsdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                    addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.6.0/metisMenu.min.js"
+                    addScriptRemote "https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/js/sb-admin-2.min.js"
+                    toWidgetHead
+                        [hamlet|
+                            <meta charset="UTF-8">  
+                        |]  
             _ -> redirect HomeR
-
-
-
+            
+  
 
 getListFornR:: Handler Html
 getListFornR = do
